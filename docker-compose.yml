@@ -8,7 +8,7 @@ services:
     ports:
       - "9001:9000"
     environment:
-      NODE_FULL_IP: "43.198.147.230"
+      NODE_FULL_IP: "39.104.116.191"
       NODE_FULL_PORT: "50051"
       NODE_SOLIDITY_IP: "39.105.66.80"
       NODE_SOLIDITY_PORT: "50051"
@@ -18,6 +18,8 @@ services:
 
   redis:
     image: redis:4.0
+    volumes:
+      - /tronscan/redis:/data
   pgsql:
     image: postgres:9.6
     environment:
@@ -26,3 +28,4 @@ services:
       POSTGRES_USER: postgres
     volumes:
       - ./schema/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - /tronscan/postgresql:/var/lib/postgresql/data
